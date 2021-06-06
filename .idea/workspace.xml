@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c2dd4033-5efa-4234-923e-04e8230269b3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/themes/next/source/images/cat.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/themes/next/source/images/lxt.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/themes/next/source/images/qrcode_for_techub.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/next" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/themes/next/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/_config.yml" afterDir="false" />
+    <list default="true" id="c2dd4033-5efa-4234-923e-04e8230269b3" name="Default Changelist" comment="update">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/_config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/next" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -73,8 +72,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1622975763536</updated>
-      <workItem from="1622975764807" duration="10100000" />
+      <workItem from="1622975764807" duration="12837000" />
     </task>
+    <task id="LOCAL-00001" summary="update">
+      <created>1622986992506</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1622986992506</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -90,5 +97,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
 </project>
