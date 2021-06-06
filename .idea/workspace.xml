@@ -5,6 +5,7 @@
       <change afterPath="$PROJECT_DIR$/themes/next/source/images/cat.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/themes/next/source/images/lxt.jpg" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/themes/next/source/images/qrcode_for_techub.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/themes/next" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/themes/next/_config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/themes/next/_config.yml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,7 +22,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/themes/next" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="SYNC" />
   </component>
   <component name="MavenImportPreferences">
@@ -72,7 +73,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1622975763536</updated>
-      <workItem from="1622975764807" duration="9424000" />
+      <workItem from="1622975764807" duration="10100000" />
     </task>
     <servers />
   </component>
