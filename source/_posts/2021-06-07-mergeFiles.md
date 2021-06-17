@@ -1,7 +1,7 @@
 ---
 title: 堆的应用-合并有序小文件
 tags:
-  - 数据结构与算法
+  - 堆
 categories:
   - 数据结构与算法
 date: 2021-06-07 21:05:35
@@ -171,7 +171,5 @@ public static void move(File bigFile) {
 }
 ```
 
+[完整代码链接（文件为MergeFiles.java）](https://github.com/Xuwudong/algo)
 
-完整代码链接（文件为MergeFiles）：
-
-https://github.com/Xuwudong/algo
