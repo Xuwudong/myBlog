@@ -475,10 +475,10 @@ yandex_site_verification:
 
 # Baidu Webmaster tools verification.
 # See: https://ziyuan.baidu.com/site
-baidu_site_verification:
+baidu_site_verification: <meta name="baidu-site-verification" content="code-wI49Lf6M4i" />
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO.
-baidu_push: false
+baidu_push: true
 
 
 # ---------------------------------------------------------------
@@ -516,7 +516,7 @@ pjax: false
 
 # FancyBox is a tool that offers a nice and elegant way to add zooming functionality for images.
 # For more information: https://fancyapps.com/fancybox
-fancybox: false
+fancybox: true
 
 # A JavaScript library for zooming images like Medium.
 # Do not enable both `fancybox` and `mediumzoom`.
@@ -913,8 +913,8 @@ vendors:
   # fancybox: //cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js
   # fancybox_css: //cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css
   jquery:
-  fancybox:
-  fancybox_css:
+  fancybox: //cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js
+  fancybox_css: //cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css
 
   # Medium-zoom
   # mediumzoom: //cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js
@@ -996,3 +996,50 @@ vendors:
 css: css
 js: js
 images: images
+
+needmoreshare:
+  enable: true
+  cdn:
+    js: //cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.js
+    css: //cdn.jsdelivr.net/gh/theme-next/theme-next-needmoreshare2@1/needsharebutton.min.css
+  postbottom:
+    enable: true
+    options:
+      iconStyle: box
+      boxForm: horizontal
+      position: bottomCenter
+      networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
+  float:
+    enable: false
+    options:
+      iconStyle: box
+      boxForm: horizontal
+      position: middleRight
+      networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
+
+#sharejs:
+#  enable: true
+#  cdn:
+#    js: //cdn.jsdelivr.net/npm/social-share.js@1/dist/js/social-share.min.js
+#    css: //cdn.jsdelivr.net/npm/social-share.js@1/dist/js/social-share.min.css
+#  networks: weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google
+#  wechat_qrcode:
+#    title: share.title
+#    prompt: share.prompt
+#
+#likely:
+#  enable: true
+#  cdn:
+#    js: //cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.js
+#    css: //cdn.jsdelivr.net/npm/ilyabirman-likely@2/release/likely.min.css
+#  look: normal # available values: normal, light, small, big
+#  networks:
+#    twitter: Tweet
+#    facebook: Share
+#    linkedin: Link
+#    gplus: Plus
+#    vkontakte: Share
+#    odnoklassniki: Class
+#    telegram: Send
+#    whatsapp: Send
+#    pinterest: Pin
