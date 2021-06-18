@@ -11,6 +11,8 @@ date: 2021-06-17 20:02:30
 
 &ensp;&ensp;我们知道二叉树的前序遍历dfs的代码是这样写的：
 
+<!-- more -->
+
 ```bash
 public void treeDFS(TreeNode root) {
     if (root == null)
