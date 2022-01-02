@@ -7,6 +7,8 @@ date: 2022-01-01 23:08:57
 
 ### 实现
 基于[此pinyin分词器](https://github.com/medcl/elasticsearch-analysis-pinyin) 实现搜索,自定义analyzer,使用type ngarm当做tokenizer,使用type pinyin当做filter,并且设置`"term_vector": "with_positions_offsets"`
+
+<!-- more -->
 ### 🌰
 #### 初始化
 ```bash
