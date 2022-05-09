@@ -195,10 +195,10 @@ ip netns exec net1 nc -lp 80
 ```
 
 开启抓包， ```tcpdump  tcp port 8088 -i eth0  -n host 10.143.*.*```。可见在请求的时候，目的是宿主机的 IP 的端口。  
-![img.png](/images/make-docker-nte/img_7.png)
+![img.png](/images/make-docker-net/img_7.png)
 
 但数据包到宿主机协议栈以后命中了我们配置的 DNAT 规则，宿主机把它转发到了 br0 上。在 bridge 上由于没有那么多的网络流量包，所以不用过滤直接抓包就行，``` tcpdump -i br0```。  
-![img.png](/images/make-docker-nte/img_8.png)
+![img.png](/images/make-docker-net/img_8.png)
 
 bridge 当然知道 192.168.0.2 是 veth 1。于是，在 veth1 上监听 80 的服务就能收到来自外界的请求了！我们来总结一下这个接收过程  
 
