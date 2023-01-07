@@ -9,10 +9,15 @@ origin  https://github.com/next-theme/hexo-theme-next (push)
 ```
 
 #### 开发方式
-1. npx hexo clean
-2. 本地测试： npx hexo server --debug
-3. 部署： npx hexo g -d
-
+1. 本地测试
+``` shell
+npx hexo clean
+npx hexo server --debug
+```
+2. 部署
+``` shell
+npx hexo g -d
+```
 #### 问题
 1. 怎么解决新发布的文章提示 "未找到相关的Issues进行评论"
 
