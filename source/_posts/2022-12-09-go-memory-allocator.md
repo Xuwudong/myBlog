@@ -16,6 +16,7 @@ tags:
 * 线性分配器无法在内存被释放时重用内存， 所以需要与合适的垃圾回收算法配合使用，例如：标记压缩（Mark-Compact）、复制回收（Copying GC）和分代回收（Generational GC）等算法，它们可以通过拷贝的方式整理存活对象的碎片，将空闲内存定期合并，这样就能利用线性分配器的效率提升内存分配器的性能了。
 * 因为线性分配器需要与具有拷贝特性的垃圾回收算法配合，所以 C 和 C++ 等需要直接对外暴露指针的语言就无法使用该策略
 ![img_2.png](/images/go_memory_alllocator/img_2.png)
+
 #### 空闲链表分配器
 空闲链表分配器（Free-List Allocator）可以重用已经被释放的内存，它在内部会维护一个类似链表的数据结构。当用户程序申请内存时，空闲链表分配器会依次遍历空闲的内存块，找到足够大的内存，然后申请新的资源并修改链表
 * 隔离适应（Segregated-Fit） 分配策略：  将内存分割成多个链表，每个链表中的内存块大小相同，申请内存时先找到满足条件的链表，再从链表中选择合适的内存块；
@@ -34,10 +35,11 @@ tags:
 ![img_5.png](/images/go_memory_alllocator/img_5.png)
 在 C 和 Go 混合使用时会导致程序崩溃：
 
-1. 分配的内存地址会发生冲突，导致堆的初始化和扩容失败3；
-2. 没有被预留的大块内存可能会被分配给 C 语言的二进制，导致扩容后的堆不连续4；
+1. 分配的内存地址会发生冲突，导致堆的初始化和扩容失败；
+2. 没有被预留的大块内存可能会被分配给 C 语言的二进制，导致扩容后的堆不连续；
+
 #### 稀疏内存 
-使用稀疏的内存布局不仅能移除堆大小的上限5，还能解决 C 和 Go 混合使用时的地址空间冲突问题6。不过因为基于稀疏内存的内存管理失去了内存的连续性这一假设，这也使内存管理变得更加复杂：
+使用稀疏的内存布局不仅能移除堆大小的上限，还能解决 C 和 Go 混合使用时的地址空间冲突问题。不过因为基于稀疏内存的内存管理失去了内存的连续性这一假设，这也使内存管理变得更加复杂：
 ![img_6.png](/images/go_memory_alllocator/img_6.png)
 如上图所示，运行时使用二维的 runtime.heapArena 数组管理所有的内存，每个单元都会管理 64MB 的内存空间：
 ``` go 
@@ -99,9 +101,10 @@ type mspan struct {
 runtime.mcache 是 Go 语言中的线程缓存，它会与线程上的处理器一一绑定，主要用来缓存用户程序申请的微小对象。每一个线程缓存都持有 68 * 2 个 runtime.mspan，
 这些内存管理单元都存储在结构体的 alloc 字段中
 ![img.png](/images/go_memory_alllocator/img.png)
-#### 微分配器 #
+#### 微分配器 
 * 线程缓存中还包含几个用于分配微对象的字段
-* 微分配器只会用于分配非指针类型的内
+* 微分配器只会用于分配非指针类型的内存
+
 ### 中心缓存
 * 与线程缓存不同，访问中心缓存中的内存管理单元需要使用互斥锁
 ```go
@@ -115,10 +118,10 @@ type mcentral struct {
 #### 内存管理单元分配
 线程缓存会通过中心缓存的 runtime.mcentral.cacheSpan 方法获取新的内存管理单元，该方法的实现比较复杂，我们可以将其分成以下几个部分：
 
-调用 runtime.mcentral.partialSwept 从清理过的、包含空闲空间的 runtime.spanSet 结构中查找可以使用的内存管理单元；
-调用 runtime.mcentral.partialUnswept 从未被清理过的、有空闲对象的 runtime.spanSet 结构中查找可以使用的内存管理单元；
-调用 runtime.mcentral.fullUnswept 获取未被清理的、不包含空闲空间的 runtime.spanSet 中获取内存管理单元并通过 runtime.mspan.sweep 清理它的内存空间；
-调用 runtime.mcentral.grow 从堆中申请新的内存管理单元；
+1. 调用 runtime.mcentral.partialSwept 从清理过的、包含空闲空间的 runtime.spanSet 结构中查找可以使用的内存管理单元；
+2. 调用 runtime.mcentral.partialUnswept 从未被清理过的、有空闲对象的 runtime.spanSet 结构中查找可以使用的内存管理单元；
+3. 调用 runtime.mcentral.fullUnswept 获取未被清理的、不包含空闲空间的 runtime.spanSet 中获取内存管理单元并通过 runtime.mspan.sweep 清理它的内存空间；
+4. 调用 runtime.mcentral.grow 从堆中申请新的内存管理单元；
 更新内存管理单元的 allocCache 等字段帮助快速分配内存；
 
 
@@ -126,11 +129,11 @@ type mcentral struct {
 runtime.mheap 是内存分配的核心结构体，Go 语言程序会将其作为全局变量存储，而堆上初始化的所有对象都由该结构体统一管理，该结构体中包含两组非常重要的字段，其中一个是全局的中心缓存列表 central，另一个是管理堆区内存区域的 arenas 以及相关字段。
 ![img_8.png](/images/go_memory_alllocator/img_8.png)
 
-### 内存管理单元分配
+#### 内存管理单元分配
 1. 从堆上分配新的内存页和内存管理单元 runtime.mspan；
 2. 初始化内存管理单元并将其加入 runtime.mheap 持有内存单元列表；
-#### 申请内存
 
+#### 申请内存
 1. 如果申请的内存比较小，获取申请内存的处理器并尝试调用 runtime.pageCache.alloc 获取内存区域的基地址和大小；
 2. 如果申请的内存比较大或者**线程的页缓存**中内存不足，会通过 runtime.pageAlloc.alloc **在页堆上申请内存**；
 3. 如果发现页堆上的内存不足，会尝试通过 runtime.mheap.grow 扩容并重新调用 runtime.pageAlloc.alloc 申请内存；
